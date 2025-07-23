@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>ADM Cardápio</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f7f7;
+        }
+
+        header, footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+        }
+
+        main {
+            padding: 2rem;
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-top: 1rem;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="file"],
+        select {
+            padding: 0.5rem;
+            margin-top: 0.3rem;
+        }
+
+        .checkbox-group,
+        .radio-group {
+            margin-top: 0.5rem;
+        }
+
+        .checkbox-group label,
+        .radio-group label {
+            font-weight: normal;
+            margin-right: 1rem;
+        }
+
+        button {
+            margin-top: 2rem;
+            padding: 0.7rem;
+            background-color: #333;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Bem-vindo ao ADM Cardápio</h1>
+    </header>
+
+    <main>
+        <form action="/form" method="post" enctype="multipart/form-data">
+            <label for="name">Nome:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="price">Preço:</label>
+            <input type="number" id="price" name="price" required>
+
+            <label>Acompanhamentos:</label>
+            <div class="checkbox-group">
+                <label><input type="checkbox" name="company" value="arroz"> Arroz</label>
+                <label><input type="checkbox" name="company" value="feijao"> Feijão</label>
+                <label><input type="checkbox" name="company" value="salada"> Salada</label>
+                <label><input type="checkbox" name="company" value="batata"> Batata</label>
+            </div>
+
+            <label>Categoria:</label>
+            <div class="radio-group">
+                <label><input type="radio" name="category" value="entrada" required> Entrada</label>
+                <label><input type="radio" name="category" value="prato_principal"> Prato Principal</label>
+                <label><input type="radio" name="category" value="sobremesa"> Sobremesa</label>
+                <label><input type="radio" name="category" value="bebida"> Bebida</label>
+            </div>
+
+            <label for="image">Imagem:</label>
+            <input type="file" id="image" name="image" accept="image/*" required>
+
+            <button type="submit">Enviar</button>
+        </form>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 ADM Cardápio</p>
+    </footer>
+
+</body>
+</html>
