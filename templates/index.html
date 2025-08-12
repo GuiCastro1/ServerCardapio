@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <title>ADM Cardápio</title>
@@ -11,7 +12,8 @@
             background-color: #f7f7f7;
         }
 
-        header, footer {
+        header,
+        footer {
             background-color: #333;
             color: white;
             text-align: center;
@@ -23,7 +25,7 @@
             max-width: 600px;
             margin: 0 auto;
             background-color: white;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
         form {
@@ -69,6 +71,7 @@
         }
     </style>
 </head>
+
 <body>
 
     <header>
@@ -81,22 +84,20 @@
             <input type="text" id="name" name="name" required>
 
             <label for="price">Preço:</label>
-            <input type="number" id="price" name="price" required>
+            <input type="text" id="price" name="price" required>
 
             <label>Acompanhamentos:</label>
             <div class="checkbox-group">
                 <label><input type="checkbox" name="company" value="arroz"> Arroz</label>
                 <label><input type="checkbox" name="company" value="feijao"> Feijão</label>
                 <label><input type="checkbox" name="company" value="salada"> Salada</label>
-                <label><input type="checkbox" name="company" value="batata"> Batata</label>
+                <label><input type="checkbox" name="company" value="batata"> Batata Frita</label>
             </div>
 
             <label>Categoria:</label>
             <div class="radio-group">
-                <label><input type="radio" name="category" value="entrada" required> Entrada</label>
-                <label><input type="radio" name="category" value="prato_principal"> Prato Principal</label>
-                <label><input type="radio" name="category" value="sobremesa"> Sobremesa</label>
-                <label><input type="radio" name="category" value="bebida"> Bebida</label>
+                <label><input type="radio" name="category" value="platesOfDay"> Pratos do Dia</label>
+                <label><input type="radio" name="category" value="plates"> Pratos da Casa</label>
             </div>
 
             <label for="image">Imagem:</label>
@@ -109,6 +110,38 @@
     <footer>
         <p>&copy; 2025 ADM Cardápio</p>
     </footer>
+    <script>
+        const form = document.querySelector('form[action="/form"]');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault(); // evita envio tradicional
+
+            const formData = new FormData(form);
+
+            try {
+                const response = await fetch('/form', {
+                    method: 'POST',
+                    body: formData,
+                });
+
+                if (!response.ok) {
+                    alert('Erro na requisição: ' + response.status);
+                    return;
+                }
+
+                const data = await response.json();
+                alert(data.message);
+
+                if (data.status === 'success') {
+                    form.reset(); // limpa o form se quiser
+                }
+
+            } catch (error) {
+                alert('Erro ao enviar formulário: ' + error.message);
+            }
+        });
+    </script>
 
 </body>
+
 </html>
