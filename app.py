@@ -12,7 +12,7 @@ app.secret_key = os.environ.get('SECRET_KEY', 'fallback_secreto_local')
 # CORS(app)
 
 
-CORS(app, resources={r"/api/*": {"origins": "*"}}, supports_credentials=True)
+CORS(app, resources={r"/api/*": {"origins": "https://guicastro1.github.io"}}, supports_credentials=True)
 
 
 app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{os.path.join(app.instance_path, 'cardapio.db')}'
