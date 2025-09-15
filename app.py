@@ -9,7 +9,11 @@ app = Flask(__name__)
 
 app.secret_key = os.environ.get('SECRET_KEY', 'fallback_secreto_local')
 
-CORS(app)
+# CORS(app)
+
+
+CORS(app, resources={r"/api/*": {"origins": "*"}}, supports_credentials=True)
+
 
 app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{os.path.join(app.instance_path, 'cardapio.db')}'
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
